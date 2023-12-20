@@ -75,7 +75,6 @@ session_start();
                                     </div> 
                                 </div>
                             </div>
-
                             <!-- Nav End -->
 
                         </div>
