@@ -38,7 +38,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Nhạc</a>
+                    <a href="#">Sản Phẩm</a>
                 </li>
             </ul>
     </div>
@@ -47,26 +47,25 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex align-items-center">
-                                        <h4 class="card-title">Thêm Nhạc</h4>
+                                        <h4 class="card-title">Thêm Sản Phẩm</h4>
                                         <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
                                             <i class="fa fa-plus"></i>
-                                            Thêm Nhạc
+                                            Thêm Sản Phẩm
                                         </button>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <!-- Modal -->
-                                    <section class="section">
                                         <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                            <form action="index.php?controller=nhaccontroller&action=them" method="POST" enctype="multipart/form-data">
+                                            <form action="index.php?controller=sanphamcontroller&action=them" method="POST" enctype="multipart/form-data">
                                             <div class="modal-content">
                                                 <div class="modal-header no-bd">
                                                     <h5 class="modal-title">
                                                         <span class="fw-mediumbold">
                                                         Thêm</span> 
                                                         <span class="fw-light">
-                                                            đĩa nhạc
+                                                            sản phẩm
                                                         </span>
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -79,47 +78,71 @@
                                                         <div class="row">
                                                             <div class="col-md-6 pr-0">
                                                                 <div class="form-group form-group-default">
-                                                                    <label>Mã nhạc</label>
-                                                                    <input name="id_nhac" type="text" class="form-control" placeholder="điền mã" required="required">
+                                                                    <label>Mã đĩa nhạc</label>
+                                                                    <input name="id_dianhac" type="text" class="form-control" placeholder="điền mã" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 pr-0">
                                                                 <div class="form-group form-group-default">
-                                                                    <label>Tên nhạc</label>
-                                                                    <input name="tennhac" type="text" class="form-control" placeholder="điền tên" required="required">
+                                                                    <label>Tên đĩa nhạc</label>
+                                                                    <input name="tendianhac" type="text" class="form-control" placeholder="điền tên" required="required">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Mô tả</label>
+                                                                    <script src="ckeditor/ckeditor.js"></script>
+                                                                    <textarea id="mota" name="mota" type="text" class="form-control" cols="30" rows="4">
+                                                                    </textarea required="required">
+                                                                    <script type="text/javascript">CKEDITOR.replace( 'mota'); </script>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 pr-0">
                                                                 <div class="form-group form-group-default">
-                                                                    <label>Tác Giả</label>
-                                                                    <input name="tentacgia" type="text" class="form-control" placeholder="điền tên tác giả" required="required">
+                                                                    <label>Giá</label>
+                                                                    <input name="gia" type="number" class="form-control" placeholder="thêm giá tiền" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 pr-0">
                                                                 <div class="form-group form-group-default">
-                                                                    <label>Video</label>
-                                                                    <input multiple type="file" name ="video" class="form-control" required="required">
+                                                                    <label>Hình</label>
+                                                                    <input name="hinh" type="file" class="form-control" required="required">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <select name="id_theloai">
+                                                                        <option>Thể Loại</option>
+                                                                        <?php
+                                                                        foreach($dataTL as $arr)
+                                                                        {
+                                                                        ?>
+                                                                        <option value="<?php echo $arr['id_theloai']?>"><?php echo $arr['tentheloai']?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                 </div>
                                                 <div class="modal-footer no-bd">
-                                                    <button type="submit" id="addRowButton" class="btn btn-primary" value = "Upload File">Thêm</button>
+                                                    <button type="submit" id="addRowButton" class="btn btn-primary">Thêm</button>
                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
                                                 </div>
                                             </div>
                                         </form>
                                         </div>
                                     </div>
-                                </section>
                                     <div class="table-responsive">
                                         <table id="add-row" class="display table table-striped table-hover" >
                                             <thead>
                                                 <tr>
                                                     <th>Mã</th>
                                                     <th>Tên</th>
-                                                    <th>Video</th>
-                                                    <th>Tác Giả</th>
+                                                    <th>Giá</th>
+                                                    <th>Hình</th>
+                                                    <th>Thể loại</th>
                                                     <th style="width: 10%">Action</th>
                                                 </tr>
                                             </thead>
@@ -127,8 +150,9 @@
                                                 <tr>
                                                     <th>Mã</th>
                                                     <th>Tên</th>
-                                                    <th>Video</th>
-                                                    <th>Tác Giả</th>
+                                                    <th>Giá</th>
+                                                    <th>Hình</th>
+                                                    <th>Thể loại</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </tfoot>
@@ -137,16 +161,17 @@
                                                     foreach ($data as $tl) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $tl['id_nhac']?></td>
-                                                        <td><?php echo $tl['tennhac']?></td>
-                                                        <td><?php echo $tl['video']?></td>
-                                                        <td><?php echo $tl['tentacgia']?></td>
+                                                        <td><?php echo $tl['id_dianhac']?></td>
+                                                        <td><?php echo $tl['tendianhac']?></td>
+                                                        <td><?php echo chuyentien($tl['gia'])?></td>
+                                                        <td><img src="views/assets/img/<?php echo $tl['hinh']?>" style="height: 50px; width: 40px;"></td>
+                                                        <td><?php echo $tl['id_theloai']?></td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <button type="button" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"><a href="index.php?controller=nhaccontroller&action=sua&id=<?php echo $tl['id_nhac']?>">
+                                                                <button type="button" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"><a href="index.php?controller=sanphamcontroller&action=sua&id=<?php echo $tl['id_dianhac']?>">
                                                                     <i class="fa fa-edit"></i> edit
                                                                 </button></a>
-                                                                <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"><a href="index.php?controller=nhaccontroller&action=delete&id=<?php echo $tl['id_nhac']?>">
+                                                                <button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"><a href="index.php?controller=sanphamcontroller&action=delete&id=<?php echo $tl['id_dianhac']?>">
                                                                 <i class="fa fa-times"></i> delete</a>
                                                                 </button>
                                                         
@@ -272,6 +297,7 @@
     <!-- Atlantis DEMO methods, don't include it in your project! -->
     <script src="./views/assets/js/setting-demo.js"></script>
     <script src="./views/assets/js/demo.js"></script>
+    <script src="./ckeditor/ckeditor.js"></script>
     <script >
         $(document).ready(function() {
             $('#basic-datatables').DataTable({
@@ -317,3 +343,4 @@
 </body>
 </html>
            
+
